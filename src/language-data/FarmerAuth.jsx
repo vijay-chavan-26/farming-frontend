@@ -1,0 +1,47 @@
+export const FarmerAuth = {
+    english: {
+        signupHeading: "Signup Here",
+        name:'Full Name',
+        namePlaceholder:'Enter your full name',
+        email: 'Email',
+        emailPlaceholder: 'Enter you email id',
+        phone: 'Mobile Number',
+        phonePlaceholder: 'Enter your mobile number',
+        password: 'Password',
+        passwordPlaceholder:'Enter your password',
+        conPassword: 'Confirm Password',
+        conPasswordPlaceholder: 'Both password and confirm password should be same',
+        signupBtn: 'Sign Up',
+        alreadyAc: 'Already have account?'
+    },
+    hindi: {
+        signupHeading: 'यहां साइन अप करें',
+        name:'पूरा नाम',
+        namePlaceholder:'अपना पूरा नाम लिखें',
+        email: "ईमेल",
+        emailPlaceholder: 'अपना ईमेल आईडी लिखें',
+        phone: 'मोबाईल नंबर',
+        phonePlaceholder: 'अपना मोबाइल नंबर लिखें',
+        password: 'पासवर्ड',
+        passwordPlaceholder:'अपना पासवर्ड लिखें',
+        conPassword: 'कन्फर्म पासवर्ड',
+        conPasswordPlaceholder: 'पासवर्ड और कन्फर्म पासवर्ड दोनों एक जैसे होने चाहिए',
+        signupBtn: 'साइन अप',
+        alreadyAc: 'पहले से ही अकाउंट है?'
+    },
+    marathi: {
+        signupHeading: 'येथे साइन अप करा',
+        name:'पूर्ण नाव',
+        namePlaceholder:'तुमचे पूर्ण नाव लिहा',
+        email:'ईमेल',
+        emailPlaceholder: 'तुमचा ईमेल आयडी लिहा',
+        phone: 'मोबाईल नंबर',
+        phonePlaceholder: 'तुमचा मोबाईल नंबर लिहा',
+        password: 'पासवर्ड',
+        passwordPlaceholder:'तुमचा पासवर्ड लिहा',
+        conPassword: 'कन्फर्म पासवर्ड',
+        conPasswordPlaceholder: 'पासवर्ड आणि कन्फर्म पासवर्ड दोन्ही समान असावेत',
+        signupBtn: 'साइन अप',
+        alreadyAc: 'आधीच अकाउंट आहे?'
+    },
+}
