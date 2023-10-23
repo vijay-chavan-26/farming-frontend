@@ -1,5 +1,5 @@
 import React from "react";
-import { FarmerAuth } from "../language-data/FarmerAuth";
+import { Auth } from "../language-data/Auth";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -9,82 +9,87 @@ const FarmerSignup = () => {
     <div>
       <div className="flex">
         <div className="flex-grow bg-theme text-white">vjfb</div>
-        <div className="w-2/3 p-10">
+        <div className="w-2/3 px-20 py-10">
           <h1 className="text-3xl font-semibold text-theme">
-            {FarmerAuth[lang].signupHeading}
+            {Auth[lang].signupHeading}
           </h1>
+          <p className="text-sm text-themeText2 mt-2">{Auth[lang].signupDesc}</p>
 
-          <form className="p-10 rounded-xl bg-themeBg mt-5">
+          <form className="p-10 rounded-xl bg-themeBg mt-10">
+          <h1 className="text-xl mb-5 font-semibold text-theme">
+            {Auth[lang].signupTitle}
+          </h1>
             <div>
               <label htmlFor="name" className="formLabel">
-                {FarmerAuth[lang].name}:{" "}
+                {Auth[lang].name}:{" "}
               </label>
               <input
                 type="text"
                 id="name"
-                placeholder={FarmerAuth[lang].namePlaceholder}
+                placeholder={Auth[lang].namePlaceholder}
                 className="formInput"
               />
             </div>
-            <div className="mt-5">
-              <label htmlFor="email" className="formLabel">
-                {FarmerAuth[lang].email}:{" "}
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder={FarmerAuth[lang].emailPlaceholder}
-                className="formInput"
-              />
+            <div className="xl:flex xl:gap-x-5 ">
+              <div className="mt-5 w-full">
+                <label htmlFor="email" className="formLabel">
+                  {Auth[lang].email}:{" "}
+                </label>
+                <input
+                  type="text"
+                  id="email"
+                  placeholder={Auth[lang].emailPlaceholder}
+                  className="formInput"
+                />
+              </div>
+              <div className="mt-5 w-full">
+                <label htmlFor="phone" className="formLabel">
+                  {Auth[lang].phone}:{" "}
+                </label>
+                <input
+                  type="text"
+                  id="phone"
+                  placeholder={Auth[lang].phonePlaceholder}
+                  className="formInput"
+                />
+              </div>
             </div>
-            <div className="mt-5">
-              <label htmlFor="phone" className="formLabel">
-                {FarmerAuth[lang].phone}:{" "}
-              </label>
-              <input
-                type="text"
-                id="phone"
-                placeholder={FarmerAuth[lang].phonePlaceholder}
-                className="formInput"
-              />
-            </div>
-            </div>
-            <div className="lg:flex lg:gap-x-5 ">
-            <div className="mt-5 w-full">
-              <label htmlFor="password" className="formLabel">
-                {FarmerAuth[lang].password}:{" "}
-              </label>
-              <input
-                type="text"
-                id="password"
-                placeholder={FarmerAuth[lang].passwordPlaceholder}
-                className="formInput"
-              />
-            </div>
-            <div className="mt-5 w-full">
-              <label htmlFor="conPassword" className="formLabel">
-                {FarmerAuth[lang].conPassword}:{" "}
-              </label>
-              <input
-                type="text"
-                id="conPassword"
-                placeholder={FarmerAuth[lang].conPasswordPlaceholder}
-                className="formInput"
-              />
-            </div>
+            <div className="xl:flex xl:gap-x-5 ">
+              <div className="mt-5 w-full">
+                <label htmlFor="password" className="formLabel">
+                  {Auth[lang].password}:{" "}
+                </label>
+                <input
+                  type="text"
+                  id="password"
+                  placeholder={Auth[lang].passwordPlaceholder}
+                  className="formInput"
+                />
+              </div>
+              <div className="mt-5 w-full">
+                <label htmlFor="conPassword" className="formLabel">
+                  {Auth[lang].conPassword}:{" "}
+                </label>
+                <input
+                  type="text"
+                  id="conPassword"
+                  placeholder={Auth[lang].conPasswordPlaceholder}
+                  className="formInput"
+                />
+              </div>
             </div>
 
-            <div className="mt-5">
+            <div className="mt-10 text-center">
               <button
                 type="button"
-                className="px-4 py-2 w-full bg-theme rounded-md text-white"
+                className="px-10  py-2 bg-theme rounded-sm text-white"
               >
-                {FarmerAuth[lang].signupBtn}
+                {Auth[lang].signupBtn}
               </button>
             </div>
             <div className="mt-5">
               <p>
-                {FarmerAuth[lang].alreadyAc}{" "}
+                {Auth[lang].alreadyAc}{" "}
                 <Link to={"/login"} className="text-blue-700">
                   Login now
                 </Link>
