@@ -12,11 +12,11 @@ const items = [
     key: "english",
   },
   {
-    label: <button className="px-4">Hindi</button>,
+    label: <button className="px-4">हिंदी</button>,
     key: "hindi",
   },
   {
-    label: <button className="px-4">Marathi</button>,
+    label: <button className="px-4">मराठी</button>,
     key: "marathi",
   },
 ];

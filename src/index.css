@@ -16,6 +16,41 @@ body{
   @apply text-themeText2 block
 }
 
+.navLink{
+  @apply px-2 relative pb-2
+}
+.navLink::after{
+  content: '';
+  @apply h-1 rounded-xl w-0 absolute bg-theme bottom-0 left-0 duration-300
+}
+
+.navLink:hover::after{
+  @apply w-full
+}
+
+
+.sidebar-links, .pending{
+  text-decoration: none;
+  color: #000;
+  padding: 0.5rem 1rem;
+  /* transition:all .1s ease-in-out; */
+}
+
+.active.sidebar-links{
+  color: #000;
+  /* transition:all .1s ease-in-out; */
+  @apply bg-theme text-white
+}
+
+.sidebar-links:hover{
+  @apply bg-theme text-white 
+}
+
+
+.ant-table-thead tr:first-child .ant-table-cell{
+  @apply bg-theme2 text-black whitespace-nowrap
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

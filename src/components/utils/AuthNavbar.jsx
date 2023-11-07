@@ -1,5 +1,6 @@
 import React from "react";
 import LangDropdown from "./LangDropdown";
+import { Link } from "react-router-dom";
 
 const AuthNavbar = () => {
   return (
@@ -7,7 +8,9 @@ const AuthNavbar = () => {
       <div className="flex justify-between items-center">
         {/* logo */}
         <div className="logo">
-          <h1 className="text-3xl">Farming</h1>
+          <Link to={"/"} className="text-3xl">
+            Farming
+          </Link>
         </div>
         {/* language */}
         <div>
