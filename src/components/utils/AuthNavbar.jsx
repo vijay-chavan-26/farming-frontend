@@ -5,7 +5,7 @@ import FarmingLogo from '../../assets/FarmingLogo.png'
 
 const AuthNavbar = () => {
   return (
-    <div className="py-2 px-10 shadow-md">
+    <div className="py-2 px-10 shadow-md bg-white">
       <div className="flex justify-between items-center">
         {/* logo */}
         <div className="logo">

@@ -1,9 +1,8 @@
 import { Table, message } from "antd";
 import { useEffect, useState } from "react";
 import { RxDotFilled } from "react-icons/rx";
-import DealDropdown from '../utils/DealDropdown'
-import { DealTableData } from "../../../language-data/DealTableData";
-import { get_request, put_request } from "../../utils/ApiRequests";
+// import DealDropdown from '../utils/DealDropdown'
+import { get_request } from "../../utils/ApiRequests";
 import API_URL from "../../utils/ApiRequests";
 import { useSelector } from "react-redux";
 
@@ -50,14 +49,14 @@ const DepartmentsTableColumns = [
     dataIndex: "status",
     key: "status",
   },
-  {
-    title: "Action",
-    dataIndex: "action",
-    key: "action",
-  },
+//   {
+//     title: "Action",
+//     dataIndex: "action",
+//     key: "action",
+//   },
 ];
 
-const DealRequestTable = () => {
+const DealsTable = () => {
   const [data, setData] = useState();
   const [itemData, setItemData] = useState();
   const [loading, setLoading] = useState(false);
@@ -68,11 +67,12 @@ const DealRequestTable = () => {
     },
   });
   const user = useSelector((state) => state.user.user);
-  
+
   const fetchData = (UsersTableData) => {
     setLoading(true);
     console.log(UsersTableData);
     const updatedData = UsersTableData?.map((item) => {
+      console.log(itemData)
       let itemName = ""
       if(itemData){
         itemName = itemData.find((data)=>data._id === item.itemId )
@@ -104,7 +104,7 @@ const DealRequestTable = () => {
           </div>
         ),
 
-        action: item.status === "Pending" && <DealDropdown item={item} onReject={onReject} onAccept={onAccept} />,
+        // action: item.status === "Pending" && <DealDropdown item={item} />,
       };
     });
     setData(updatedData);
@@ -138,7 +138,7 @@ const DealRequestTable = () => {
   const fetchUserData = async () => {
     console.log(user)
     try {
-      const res = await get_request(`${API_URL}/partner/get-equipments/by-id/${user._id}`);
+      const res = await get_request(`${API_URL}/partner/get-equipments/all`);
       if (res) {
         setItemData(res)
         return res;
@@ -153,59 +153,14 @@ const DealRequestTable = () => {
     }
   };
 
-  const onReject = async(item) =>{
-      try {
-        const res = await put_request(`${API_URL}/deals/reject-deals`,{dealId: item._id});
-        console.log(res)
-        if (res.message) {
-          fetchDealsData().then((res) => {
-            fetchData(res);
-          });
-          message.success("Deal Rejected!");
-          return res;
-        } else {
-          message.error("Something went wrong!");
-          return;
-        }
-      } catch (error) {
-        console.log(error);
-        message.error("Something went wrong!");
-        return;
-      }
-  }
-
-  const onAccept = async(item) =>{
-      try {
-        const res = await put_request(`${API_URL}/deals/accept-deals`,{dealId: item._id});
-        console.log(res)
-        if (res.message) {
-          fetchDealsData().then((res) => {
-            fetchData(res);
-          });
-          message.success("Deal Accepted!");
-          return res;
-        } else {
-          message.error("Something went wrong!");
-          return;
-        }
-      } catch (error) {
-        console.log(error);
-        message.error("Something went wrong!");
-        return;
-      }
-  }
-
   useEffect(() => {
     if(user._id){
-        // console.log(user)
-        // console.log('vhbfvbfhbhbh')
-        fetchUserData()
+      fetchUserData()
       fetchDealsData().then((res) => {
         fetchData(res);
       });
     }
   }, [JSON.stringify(tableParams),user]);
-  
 
   const handleTableChange = (pagination) => {
     setTableParams({
@@ -214,7 +169,8 @@ const DealRequestTable = () => {
   };
 
   return (
-    <div>
+    <div className="px-10">
+
       <Table
         columns={DepartmentsTableColumns}
         rowKey={(record) => record.key}
@@ -229,5 +185,5 @@ const DealRequestTable = () => {
   );
 };
 
-export default DealRequestTable;
- 
+export default DealsTable;
+  

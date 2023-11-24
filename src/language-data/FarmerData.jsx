@@ -1,5 +1,85 @@
 export const FarmerData = {
-    english: {},
-    hindi: {},
-    marathi: {},
-  };
+  english: {
+    welcome: "Welcome",
+    info: "Book vehicles, helpers, farming equipments for your farming work",
+    vehicleWelcomeDesc:
+      "To transform and revolutionize the farming industry by creating a seamless and technology-driven ecosystem, where farmers can easily access and schedule tractor services through our platform",
+    exploreMore: "Explore More",
+    our: "Our",
+    your: "Yur",
+    deal: "Deals",
+    services: "Services",
+    book: "Book",
+    equipment: "Equipments",
+    vehicle: "Vehicles",
+    transport: "Transport",
+    transportDesc:
+      "Online booking of transport service in Pune I now turned simpler and hassle-free with the best transporter in Pune named Shetkari Mitra.",
+    hireHelper: "Hire Helper",
+    hireNow: "Hire Now",
+    bookNow: "Book Now",
+    hireHelperDesc:
+      "revolutionizes agricultural services by connecting farmers and drivers/helpers through distinct login interfaces.",
+    rentalEquipment: "Rental Farming Equipment",
+    rentalEquipmentDesc:
+      "connects Farmers and Drivers/Helpers seamlessly. Farmers easily request services like tractors or labor through a user-friendly interface, while Drivers/Helpers manage their services and respond to bookings. ",
+      wantToKnowMore: "Want to know more?",
+      downloadBrochure: "Download Brochure",
+      wantToKnowDesc: "Download Our Brochure for a Comprehensive Overview of Our Services!.",
+  },
+  hindi: {
+    welcome: "आपका स्वागत है",
+    info: "अपने कृषि कार्य के लिए वाहन, सहायक, कृषि उपकरण बुक करें",
+    vehicleWelcomeDesc:
+      "एक निर्बाध और प्रौद्योगिकी-संचालित पारिस्थितिकी तंत्र बनाकर कृषि उद्योग को बदलने और क्रांति लाने के लिए, जहां किसान हमारे मंच के माध्यम से आसानी से ट्रैक्टर सेवाओं तक पहुंच और शेड्यूल कर सकते हैं।",
+    exploreMore: "अधिक जानिए",
+    our: "हमारी",
+    your: "आपके",
+    deal: "डील",
+    services: "सेवा",
+    book: "बुक करो",
+    equipment: "उपकरण",
+    vehicle: "गाड़ी",
+    transport: "परिवहन",
+    transportDesc:
+      "पुणे में परिवहन सेवा की ऑनलाइन बुकिंग अब पुणे के सर्वश्रेष्ठ ट्रांसपोर्टर शेतकारी मित्र के साथ आसान और परेशानी मुक्त हो गई है।",
+    hireHelper: "हायर हेल्पर",
+    hireNow: "हायर करो",
+    bookNow: "बुक करो",
+    hireHelperDesc:
+      "अलग-अलग लॉगिन इंटरफेस के माध्यम से किसानों और ड्राइवरों/सहायकों को जोड़कर कृषि सेवाओं में क्रांति ला देता है। ",
+    rentalEquipment: "रेंटल फार्मिंग उपकरण",
+    rentalEquipmentDesc:
+      "किसानों और ड्राइवरों/सहायकों को निर्बाध रूप से जोड़ता है। ",
+      wantToKnowMore: "और अधिक जानने की इच्छा है?",
+      downloadBrochure: "डाउनलोड ब्रॉउचार",
+      wantToKnowDesc: "हमारी सेवाओं के व्यापक अवलोकन के लिए हमारा ब्रोशर डाउनलोड करें!",
+  },
+  marathi: {
+    welcome: "आपले स्वागत आहे",
+    info: "तुमच्या शेतीच्या कामासाठी वाहने, मदतनीस, शेती उपकरणे बुक करा",
+    vehicleWelcomeDesc:
+      "एक अखंड आणि तंत्रज्ञान-चालित इकोसिस्टम तयार करून शेती उद्योगात परिवर्तन आणि क्रांती घडवून आणण्यासाठी, जिथे शेतकरी आमच्या प्लॅटफॉर्मद्वारे ट्रॅक्टर सेवा सहज मिळवू शकतात आणि शेड्यूल करू शकतात.",
+    exploreMore: "अधिक जाणून घ्या",
+    our: "आमची",
+    your: "तुमच्या",
+    deal: "डील",
+    services: "सेवा",
+    book: "बुक करा",
+    equipment: "उपकरण",
+    vehicle: "गाडी",
+    transport: "परिवहन",
+    transportDesc:
+      "पुण्यातील परिवहन सेवेचे ऑनलाइन बुकिंग मी आता शेतकरी मित्र नावाच्या पुण्यातील सर्वोत्कृष्ट वाहतूकदारासोबत सोपे आणि त्रासमुक्त झाले आहे. ",
+    hireHelper: "हायर हेल्पर",
+    hireNow: "हायर करा",
+    bookNow: "बुक करा",
+    hireHelperDesc:
+      "शेतकरी आणि ड्रायव्हर/मदतनीस यांना वेगळ्या लॉगिन इंटरफेसद्वारे जोडून कृषी सेवांमध्ये क्रांती घडवून आणते.",
+    rentalEquipment: " रेंटल फार्मिंग उपकरण",
+    rentalEquipmentDesc: "शेतकरी आणि ड्रायव्हर्स/मदत्यांना अखंडपणे जोडते. ",
+    wantToKnowMore: "अधिक जाणून घेऊ इच्छिता?",
+    downloadBrochure: "डाउनलोड ब्रॉउचार",
+    wantToKnowDesc: "आमच्या सेवांच्या व्यापक विहंगावलोकनासाठी आमचे माहितीपत्रक डाउनलोड करा!",
+  },
+};

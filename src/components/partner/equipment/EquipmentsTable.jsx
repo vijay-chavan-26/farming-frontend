@@ -67,7 +67,7 @@ const EquipmentsTable = () => {
   const fetchData = (UsersTableData) => {
     setLoading(true);
     console.log(UsersTableData);
-    const updatedData = UsersTableData.map((item,index) => {
+    const updatedData = UsersTableData?.map((item,index) => {
 
       return {
         key: (index+1).toString(),
@@ -97,7 +97,7 @@ const EquipmentsTable = () => {
       ...tableParams,
       pagination: {
         ...tableParams.pagination,
-        total: UsersTableData.length,
+        total: UsersTableData?.length,
       },
     });
   };
@@ -106,7 +106,7 @@ const EquipmentsTable = () => {
     console.log(user)
     try {
       const res = await get_request(`${API_URL}/partner/get-equipments/by-id/${user._id}`);
-      if (res.length > 0) {
+      if (res) {
         return res;
       } else {
         message.error("Something went wrong!");
