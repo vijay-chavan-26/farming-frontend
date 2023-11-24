@@ -116,6 +116,12 @@ const Login = () => {
                 {Auth[lang].loginBtn}
               </button>
             </div>
+          <div className="mt-5">
+            <p>
+              {Auth[lang].dontHave}{" "}
+              <Link to={"/signup"} className="text-blue-700"> {Auth[lang].createNow}</Link>
+            </p>
+          </div>
           </form>
         </div>
         <div className="flex-grow bg-theme text-white">vjfb</div>

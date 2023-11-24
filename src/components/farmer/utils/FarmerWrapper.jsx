@@ -25,7 +25,7 @@ const FarmerWrapper = () => {
 
   return (
     <div>
-      <div>
+      <div className="sticky top-0">
         <FarmerNavbar />
       </div>
 

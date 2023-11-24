@@ -46,9 +46,31 @@ body{
   @apply bg-theme text-white 
 }
 
+.navbar-links{
+  @apply text-themeText2 relative pb-2
+}
+
+.active.navbar-links{
+  @apply text-theme 
+}
+
+.navbar-links::after{
+  content: '';
+  width: 0%;
+  height: 3px;
+  @apply bg-theme absolute bottom-0 left-0  duration-300 rounded-xl
+}
+
+.navbar-links:hover::after{
+  width: 100%;
+}
 
 .ant-table-thead tr:first-child .ant-table-cell{
-  @apply bg-theme2 text-black whitespace-nowrap
+  @apply bg-gray-100 py-2 text-black whitespace-nowrap
+}
+
+.ant-table-tbody .ant-table-row .ant-table-cell{
+  @apply py-2
 }
 
 @tailwind base;

@@ -44,6 +44,7 @@ export const Auth = {
     loginBtn: "Log in",
     invalidUserMsg: "Invalid username or password!",
     loginSuccess: "Login Successfully!",
+    createNow: "Create Now"
   },
   hindi: {
     signupHeading: "यहां साइन अप करें",
@@ -91,6 +92,7 @@ export const Auth = {
     loginBtn: "लॉग इन करें",
     invalidUserMsg: "गलत उपयोगकर्ता नाम या पासवर्ड!",
     loginSuccess: "लॉगिन सफल",
+    createNow: "अकाउंट बनाएँ"
   },
   marathi: {
     signupHeading: "येथे साइन अप करा",
@@ -137,5 +139,6 @@ export const Auth = {
     loginBtn: "लॉग इन करा",
     invalidUserMsg: "चुकीचे वापरकर्तानाव किंवा पासवर्ड",
     loginSuccess: "लॉगिन यशस्वी",
+    createNow: "अकाउंट तयार करा"
   },
 };

@@ -6,6 +6,9 @@ import { MdDashboard, MdAssignmentAdd } from "react-icons/md";
 import { FaHandshake } from "react-icons/fa";
 import { GiFarmTractor } from "react-icons/gi";
 import { IoExit } from "react-icons/io5";
+import { clearUser } from "../../../redux/reducers/User";
+import { useDispatch } from "react-redux";
+import FarmingLogo from '../../../assets/FarmingLogo.png'
 
 const SidebarMenuList = [
   {
@@ -38,11 +41,12 @@ const PartnerSidebar = () => {
   const navigate = useNavigate();
 
   const currentLocation = useLocation();
-
-  const handleLogout = () =>{
-      localStorage.clear()
-      navigate('/')
-  }
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    localStorage.clear();
+    dispatch(clearUser());
+    navigate("/");
+  };
 
   return (
     <div
@@ -52,23 +56,22 @@ const PartnerSidebar = () => {
     >
       <div className="bg-theme2 h-full">
         <div className="flex flex-col h-full">
-          <div className="mt-5 flex justify-center">
+          <div className="mt-2 flex justify-between items-center">
             <NavLink
               className={`${
                 !openMenu && "hidden"
               } mx-5 duration-300 text-decoration-none whitespace-nowrap text-3xl`}
               to="/partner/dashboard"
             >
-              {/* <img src={logo} alt="logo" className="w-[160px]" /> */}
-              Farming
+              <img src={FarmingLogo} alt="farming logo" width={120} />
             </NavLink>
-            <BiMenuAltLeft
+            <div className={`flex justify-center ${!openMenu ? 'w-full mt-2': 'mr-4' }`}><BiMenuAltLeft
               size={28}
               className="cursor-pointer"
               onClick={() => {
                 setOpenMenu(!openMenu);
               }}
-            />
+            /></div>
           </div>
 
           <div className="flex justify-between flex-col h-full ">
@@ -90,9 +93,7 @@ const PartnerSidebar = () => {
                     }
                     to={item.link}
                   >
-                    <span className="ml-2">
-                      {item.icon}
-                    </span>
+                    <span className="ml-2">{item.icon}</span>
                     <span className={`${!openMenu && "hidden"} duration-300`}>
                       {item.label}
                     </span>

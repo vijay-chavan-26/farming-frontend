@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Common } from "../../../language-data/Common";
 import { HomeData } from "../../../language-data/HomeData";
+import HeroBannerImg from '../../../assets/HeroBanner.png'
 
 const FarmerHeroBanner = () => {
   const lang = useSelector((state) => state.lang.lang);
@@ -31,7 +32,7 @@ const FarmerHeroBanner = () => {
           </div>
         </div>
 
-          {/* <img src={FarmerHeroBannerImg} alt="hero banner img" width={400} className="mt-10" /> */}
+          {/* <img src={HeroBannerImg} alt="hero banner img" width={300} className="mt-10" /> */}
       </div>
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

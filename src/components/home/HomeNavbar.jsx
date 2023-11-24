@@ -3,16 +3,17 @@ import { Link, NavLink } from "react-router-dom";
 import LangDropdown from "../utils/LangDropdown";
 import { useSelector } from "react-redux";
 import { HomeData } from "../../language-data/HomeData";
+import FarmingLogo from '../../assets/FarmingLogo.png'
 
 const HomeNavbar = () => {
   const lang = useSelector((state) => state.lang.lang);
   return (
-    <div className="py-4 px-10 shadow-md border-b bg-white">
+    <div className="py-2 px-10 shadow-md border-b bg-white">
       <div className="flex justify-between items-center">
         {/* logo */}
         <div className="logo">
-          <Link to={"/farmer"} className="text-3xl">
-            Farming
+          <Link to={"/"} className="text-3xl">
+            <img src={FarmingLogo} alt="farming logo" width={140} />
           </Link>
         </div>
 

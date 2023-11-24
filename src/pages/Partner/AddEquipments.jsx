@@ -1,14 +1,101 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dropdown from "../../components/utils/Dropdown";
+import { message } from "antd";
+import API_URL from "../../components/utils/ApiRequests";
+import { useSelector } from "react-redux";
 
 const AddEquipments = () => {
   const [status, setStatus] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
+  const user = useSelector((state) => state.user.user);
+
+  const [data, setData] = useState({
+    name: "",
+    desc: "",
+    type: "",
+    price: "",
+    status: true,
+    img: {},
+  });
+
+  useEffect(() => {
+    setData({ ...data, status: status });
+  }, [status]);
+
+  useEffect(() => {
+    setData({ ...data, type: selectedType?.label });
+  }, [selectedType]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setData({ ...data, [id]: value });
+  };
+
+  const handleFileChange = (e) => {
+    // console.log(e.target.files[0])
+    setData({ ...data, img: e.target.files[0] });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      data.name === "" ||
+      data.desc === "" ||
+      data.type === "" ||
+      data.price === "" ||
+      data.img === ""
+    ) {
+      message.error("Please fill all fields!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", data.img);
+    formData.append("name", data.name);
+    formData.append("desc", data.desc);
+    formData.append("type", data.type);
+    formData.append("price", data.price);
+    formData.append("status", data.status);
+    formData.append("partnerId", user?._id);
+
+    try {
+      // Use fetch or your preferred HTTP library to send the file to the server
+      const response = await fetch(`${API_URL}/partner/create-equipment`, {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      if (data.message) {
+        message.success("Added successfully!");
+        console.log("File uploaded successfully:", data);
+        setData({
+          name: "",
+          desc: "",
+          type: "",
+          price: "",
+          status: true,
+          img: {},
+        });
+        setSelectedType(null)
+      } else {
+        message.error("Something went wrong!");
+        console.error("Error uploading file:", error);
+      }
+    } catch (error) {
+      message.error("Something went wrong!");
+      console.error("Error uploading file:", error);
+    }
+  };
   return (
     <div className="p-4">
       <h1 className="font-semibold text-xl text-theme">Add Equipment</h1>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="w-2/3 mt-5">
             <label htmlFor="name" className="formLabel">
               Equipment/Vehicle Name:
@@ -18,6 +105,8 @@ const AddEquipments = () => {
               id="name"
               placeholder="Eg. Tractor"
               className="formInput"
+              onChange={handleChange}
+              value={data.name}
             />
           </div>
 
@@ -32,6 +121,8 @@ const AddEquipments = () => {
               rows="3"
               className="formInput"
               placeholder="Eg. tractor with trolley and its implements"
+              onChange={handleChange}
+              value={data.desc}
             ></textarea>
           </div>
 
@@ -41,8 +132,8 @@ const AddEquipments = () => {
             </label>
             <Dropdown
               options={[
-                { label: "Equipment", value: "equipment" },
-                { label: "Vehicle", value: "vehicle" },
+                { label: "Equipment", value: "Equipment" },
+                { label: "Vehicle", value: "Vehicle" },
               ]}
               selectedOption={selectedType}
               setSelectedOption={setSelectedType}
@@ -58,10 +149,12 @@ const AddEquipments = () => {
               id="price"
               placeholder="Eg. 1299"
               className="formInput"
+              value={data.price}
               onChange={(e) => {
                 e.target.value = e.target.value
                   .replace(/[^0-9]/g, "")
                   .slice(0, 10);
+                handleChange(e);
               }}
             />
           </div>
@@ -73,8 +166,9 @@ const AddEquipments = () => {
             <input
               type="file"
               accept="image/*"
-              id="images"
+              id="img"
               className="formInput"
+              onChange={handleFileChange}
             />
           </div>
 
@@ -105,7 +199,10 @@ const AddEquipments = () => {
           </div>
 
           <div className="my-10">
-            <button className="px-6 py-2 border bg-theme rounded-sm text-white hover:border-theme hover:text-theme hover:bg-transparent duration-300">
+            <button
+              type="submit"
+              className="px-6 py-2 border bg-theme rounded-sm text-white hover:border-theme hover:text-theme hover:bg-transparent duration-300"
+            >
               Submit
             </button>
           </div>

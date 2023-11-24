@@ -15,6 +15,11 @@ import DealRequest from "../../pages/Partner/DealRequest";
 import Equipments from "../../pages/Partner/Equipments";
 import AddEquipments from "../../pages/Partner/AddEquipments";
 import Dashboard from "../../pages/Partner/Dashboard";
+import Farmer from "../../pages/farmer/Farmer";
+import Vehicle from "../../pages/farmer/Vehicle";
+import Equipment from "../../pages/farmer/Equipment";
+import Helper from "../../pages/farmer/Helper";
+import Deals from "../../pages/farmer/Deals";
 
 const Navigation = () => {
   return (
@@ -30,7 +35,14 @@ const Navigation = () => {
         </Route>
 
         <Route element={<FarmerWrapper />}>
-          <Route path="/farmer" element={<FarmerHome />} />
+        <Route path="/farmer" element={<Farmer />}>
+
+          <Route path="home" element={<FarmerHome />} />
+          <Route path="vehicle" element={<Vehicle />} />
+          <Route path="equipment" element={<Equipment />} />
+          <Route path="helper" element={<Helper />} />
+          <Route path="deals" element={<Deals />} />
+        </Route>
         </Route>
 
         <Route element={<PartnerWrapper />}>

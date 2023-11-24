@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { RxDotFilled } from "react-icons/rx";
 import ActionDropdownStatus from '../utils/ActionDropdownStatus'
 import { DealTableData } from "../../../language-data/DealTableData";
+import API_URL, { get_request } from "../../utils/ApiRequests";
+import { useSelector } from "react-redux";
+
 
 const DepartmentsTableColumns = [
   Table.SELECTION_COLUMN,
@@ -18,25 +21,24 @@ const DepartmentsTableColumns = [
     //   width: "20%",
   },
   {
-    title: "User ID",
-    dataIndex: "userId",
-    key: "userId",
+    title: "Desc",
+    dataIndex: "desc",
+    key: "desc",
+    //   width: "20%",
   },
   {
-    title: "Role",
-    dataIndex: "role",
-    key: "role",
+    title: "Type",
+    dataIndex: "type",
+    key: "type",
+    //   width: "20%",
   },
   {
-    title: "Department",
-    dataIndex: "department",
-    key: "department",
+    title: "Price",
+    dataIndex: "price",
+    key: "price",
+    //   width: "20%",
   },
-  {
-    title: "TV User",
-    dataIndex: "tvUser",
-    key: "tvUser",
-  },
+  
   {
     title: "Status",
     dataIndex: "status",
@@ -59,18 +61,21 @@ const EquipmentsTable = () => {
     },
   });
 
+  const user = useSelector((state) => state.user.user);
+
+
   const fetchData = (UsersTableData) => {
     setLoading(true);
     console.log(UsersTableData);
-    const updatedData = UsersTableData.map((item) => {
+    const updatedData = UsersTableData.map((item,index) => {
+
       return {
-        key: item.id.toString(),
-        eId: item.id.toString(),
+        key: (index+1).toString(),
+        eId: (index+1).toString(),
         name: item.name,
-        userId: item.userId,
-        role: item.role,
-        department: item.department,
-        tvUser: item.tvUser ? "Yes" : "No",
+       desc: item.desc.length > 15 ? `${item.desc.substring(0, 15)}...` : item.desc,
+        type: item.type,
+        price: item.price && "₹"+item.price,
 
         status: item.status ? (
           <div className="text-green-500 text-xs inline-flex items-center bg-green-50 rounded-3xl justify-center pr-3 py-0">
@@ -97,27 +102,29 @@ const EquipmentsTable = () => {
     });
   };
 
-  // const fetchUserData = async () => {
-  //   try {
-  //     const res = await get_request(`${API_URL}/user-by-dept-name`);
-  //     if (res.skytech_user) {
-  //       return res.skytech_user;
-  //     } else {
-  //       message.error("Something went wrong!");
-  //       return;
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //     message.error("Something went wrong!");
-  //     return;
-  //   }
-  // };
+  const fetchUserData = async () => {
+    console.log(user)
+    try {
+      const res = await get_request(`${API_URL}/partner/get-equipments/by-id/${user._id}`);
+      if (res.length > 0) {
+        return res;
+      } else {
+        message.error("Something went wrong!");
+        return;
+      }
+    } catch (error) {
+      console.log(error);
+      message.error("Something went wrong!");
+      return;
+    }
+  };
 
   useEffect(() => {
-    // fetchUserData().then((res) => {
-      fetchData(DealTableData);
-    // });
-  }, [JSON.stringify(tableParams)]);
+    if(user._id)
+    fetchUserData().then((res) => {
+      fetchData(res);
+    });
+  }, [JSON.stringify(tableParams),user]);
 
   const handleTableChange = (pagination) => {
     setTableParams({
