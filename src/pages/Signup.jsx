@@ -17,7 +17,7 @@ const Signup = () => {
     mobile_number: "",
     password: "",
     conPassword: "",
-    type: "",
+    // type: "",
   });
   const navigate = useNavigate();
 
@@ -72,13 +72,14 @@ const Signup = () => {
       localStorage.setItem("userType", res.user.type);
       message.success(Auth[lang].createdSuccessMsg);
       setIsDisabled(false);
+      setSelectedType(null)
       setData({
         name: "",
         email: "",
         mobile_number: "",
         password: "",
         conPassword: "",
-        type: "",
+        // type: "",
       });
       if (res.user.type === "Farmer") {
         navigate("/farmer");
@@ -98,7 +99,7 @@ const Signup = () => {
   return (
     <div>
       <div className="flex">
-        <div className="flex-grow bg-theme text-white">vjfb</div>
+        <div className="flex-grow bg-theme text-white"></div>
         <div className="w-2/3 px-20 py-10">
           <h1 className="text-3xl font-semibold text-theme">
             {Auth[lang].signupHeading}

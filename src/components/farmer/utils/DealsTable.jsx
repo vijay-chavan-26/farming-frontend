@@ -71,7 +71,8 @@ const DealsTable = () => {
   const fetchData = (UsersTableData) => {
     setLoading(true);
     console.log(UsersTableData);
-    const updatedData = UsersTableData?.map((item) => {
+
+    const updatedData = UsersTableData.reverse()?.map((item) => {
       console.log(itemData)
       let itemName = ""
       if(itemData){
@@ -154,13 +155,15 @@ const DealsTable = () => {
   };
 
   useEffect(() => {
-    if(user._id){
+    if(!itemData){
       fetchUserData()
+    }
+    if(user._id){
       fetchDealsData().then((res) => {
         fetchData(res);
       });
     }
-  }, [JSON.stringify(tableParams),user]);
+  }, [JSON.stringify(tableParams),user,itemData]);
 
   const handleTableChange = (pagination) => {
     setTableParams({

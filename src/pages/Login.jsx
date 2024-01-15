@@ -124,7 +124,7 @@ const Login = () => {
           </div>
           </form>
         </div>
-        <div className="flex-grow bg-theme text-white">vjfb</div>
+        <div className="flex-grow bg-theme text-white"></div>
       </div>
     </div>
   );

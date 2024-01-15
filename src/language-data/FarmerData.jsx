@@ -6,7 +6,7 @@ export const FarmerData = {
       "To transform and revolutionize the farming industry by creating a seamless and technology-driven ecosystem, where farmers can easily access and schedule tractor services through our platform",
     exploreMore: "Explore More",
     our: "Our",
-    your: "Yur",
+    your: "Your",
     deal: "Deals",
     services: "Services",
     book: "Book",

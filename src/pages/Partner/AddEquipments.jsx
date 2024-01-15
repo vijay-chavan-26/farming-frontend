@@ -3,17 +3,20 @@ import Dropdown from "../../components/utils/Dropdown";
 import { message } from "antd";
 import API_URL from "../../components/utils/ApiRequests";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const AddEquipments = () => {
   const [status, setStatus] = useState(true);
   const [selectedType, setSelectedType] = useState(null);
   const user = useSelector((state) => state.user.user);
+  const navigate= useNavigate()
 
   const [data, setData] = useState({
     name: "",
     desc: "",
     type: "",
     price: "",
+    totalQuantity: "",
     status: true,
     img: {},
   });
@@ -47,6 +50,7 @@ const AddEquipments = () => {
       data.desc === "" ||
       data.type === "" ||
       data.price === "" ||
+      data.totalQuantity === "" ||
       data.img === ""
     ) {
       message.error("Please fill all fields!");
@@ -59,6 +63,7 @@ const AddEquipments = () => {
     formData.append("desc", data.desc);
     formData.append("type", data.type);
     formData.append("price", data.price);
+    formData.append("totalQuantity", data.totalQuantity);
     formData.append("status", data.status);
     formData.append("partnerId", user?._id);
 
@@ -78,10 +83,12 @@ const AddEquipments = () => {
           desc: "",
           type: "",
           price: "",
+          totalQuantity: "",
           status: true,
           img: {},
         });
         setSelectedType(null)
+        navigate(-1)
       } else {
         message.error("Something went wrong!");
         console.error("Error uploading file:", error);
@@ -137,6 +144,25 @@ const AddEquipments = () => {
               ]}
               selectedOption={selectedType}
               setSelectedOption={setSelectedType}
+            />
+          </div>
+
+          <div className="w-2/3 mt-5">
+            <label htmlFor="totalQuantity" className="formLabel">
+            Total Quantity:
+            </label>
+            <input
+              type="text"
+              id="totalQuantity"
+              placeholder="Eg. 5"
+              className="formInput"
+              value={data.totalQuantity}
+              onChange={(e) => {
+                e.target.value = e.target.value
+                  .replace(/[^0-9]/g, "")
+                  .slice(0, 10);
+                handleChange(e);
+              }}
             />
           </div>
 

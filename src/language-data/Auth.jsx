@@ -13,7 +13,7 @@ export const Auth = {
     options: [
       { label: "Farmer", value: "Farmer" },
       { label: "Partner", value: "Partner" },
-      { label: "Admin", value: "Admin" },
+      // { label: "Admin", value: "Admin" },
     ],
     type: "User Type",
     selectType: "Select Type",
@@ -60,7 +60,7 @@ export const Auth = {
     options: [
       { label: "किसान", value: "Farmer" },
       { label: "साथी", value: "Partner" },
-      { label: "व्यवस्थापक", value: "Admin" },
+      // { label: "व्यवस्थापक", value: "Admin" },
     ],
     type: "उपयोगकर्ता का प्रकार",
     selectType: "चुनिए",
@@ -108,7 +108,7 @@ export const Auth = {
     options: [
       { label: "शेतकरी", value: "Farmer" },
       { label: "जोडीदार", value: "Partner" },
-      { label: "प्रशासक", value: "Admin" },
+      // { label: "प्रशासक", value: "Admin" },
     ],
     type: "वापरकर्ता प्रकार",
     selectType: "निवडा",

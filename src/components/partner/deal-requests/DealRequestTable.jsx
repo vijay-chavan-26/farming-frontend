@@ -36,6 +36,11 @@ const DepartmentsTableColumns = [
   },
   
   {
+    title: "Qty",
+    dataIndex: "quantity",
+    key: "quantity",
+  },
+  {
     title: "Booking Date",
     dataIndex: "bookingDate",
     key: "bookingDate",
@@ -71,8 +76,10 @@ const DealRequestTable = () => {
   
   const fetchData = (UsersTableData) => {
     setLoading(true);
-    console.log(UsersTableData);
-    const updatedData = UsersTableData?.map((item) => {
+    // console.log(UsersTableData);
+    const modifiedData = UsersTableData.reverse()
+
+    const updatedData = modifiedData?.map((item) => {
       let itemName = ""
       if(itemData){
         itemName = itemData.find((data)=>data._id === item.itemId )
@@ -82,6 +89,7 @@ const DealRequestTable = () => {
         itemName: itemName?.name,
         name: item.name,
         type: item.itemType,
+        quantity: item.bookedQuantity,
         bookingDate: item.bookingDate,
         returnDate: item.returnDate,
         email: item.email,
@@ -138,7 +146,7 @@ const DealRequestTable = () => {
   const fetchUserData = async () => {
     console.log(user)
     try {
-      const res = await get_request(`${API_URL}/partner/get-equipments/by-id/${user._id}`);
+      const res = await get_request(`${API_URL}/partner/get-equipments/all`);
       if (res) {
         setItemData(res)
         return res;
@@ -196,10 +204,10 @@ const DealRequestTable = () => {
   }
 
   useEffect(() => {
+    if(!itemData){
+      fetchUserData()
+    }
     if(user._id){
-        // console.log(user)
-        // console.log('vhbfvbfhbhbh')
-        fetchUserData()
       fetchDealsData().then((res) => {
         fetchData(res);
       });

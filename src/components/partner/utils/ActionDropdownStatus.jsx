@@ -2,9 +2,12 @@ import { Dropdown } from "antd";
 import React from "react";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 
-const ActionDropdown = ({ item }) => {
+const ActionDropdown = ({ item,onStatusChange }) => {
   const handleMenuClick = (e) => {
     console.log("click", e);
+    if(e.key==="status"){
+      onStatusChange(item,!item.status)
+    }
   };
   const items = [
     {

@@ -20,6 +20,7 @@ import Vehicle from "../../pages/farmer/Vehicle";
 import Equipment from "../../pages/farmer/Equipment";
 import Helper from "../../pages/farmer/Helper";
 import Deals from "../../pages/farmer/Deals";
+import Vehicles from "../../pages/Partner/Vehicles";
 
 const Navigation = () => {
   return (
@@ -50,6 +51,7 @@ const Navigation = () => {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="deal-requests" element={<DealRequest />} />
             <Route path="equipments" element={<Equipments />} />
+            <Route path="vehicles" element={<Vehicles />} />
             <Route path="add-equipment" element={<AddEquipments />} />
           </Route>
         </Route>

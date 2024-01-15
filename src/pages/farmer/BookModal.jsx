@@ -3,21 +3,33 @@ import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import API_URL from "../../components/utils/ApiRequests";
+import dayjs from "dayjs";
+import Dropdown from "../../components/utils/Dropdown";
 
-const BookModal = ({ text, item }) => {
+const BookModal = ({ text, item, onSubmit }) => {
   const [open, setOpen] = useState(false);
+  const [selectedQty, setSelectedQty] = useState(null);
+  const [options, setOptions] = useState(null);
   const [data, setData] = useState({
     name: "",
     email: "",
     mobile_number: "",
     bookingDate: "",
     returnDate: "",
+    bookedQuantity: "",
+    partnerId: "",
   });
 
   const user = useSelector((state) => state.user.user);
 
   const handleCancel = () => {
     setOpen(false);
+    setData({
+      ...data,
+      bookingDate: "",
+      returnDate: "",
+    });
+    setSelectedQty(null);
   };
 
   const handleChange = (e) => {
@@ -27,54 +39,15 @@ const BookModal = ({ text, item }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
-    if (
-      data.name === "" ||
-      data.email === "" ||
-      data.mobile_number === "" ||
-      data.bookingDate === "" ||
-      data.returnDate === ""
-    ) {
-      message.error("Please fill all fields!");
-      return;
-    }
-
-    const formData = {
+    onSubmit(data, item, selectedQty);
+    setData({
       ...data,
-      itemId: item._id,
-      farmerId: user._id,
-      itemType: item.type,
-    };
-
-    try {
-      const response = await fetch(`${API_URL}/deals/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (data.message) {
-        message.success("Equipment/Vehicle Booked successfully!");
-        console.log("Equipment/Vehicle Booked successfully:", data);
-        setData({
-          name: "",
-          email: "",
-          mobile_number: "",
-          bookingDate: "",
-          returnDate: "",
-        });
-        setOpen(false);
-      } else {
-        message.error("Something went wrong!");
-        console.error("Error uploading:", error);
-      }
-    } catch (error) {
-      message.error("Something went wrong!");
-      console.error("Error uploading:", error);
-    }
+      bookingDate: "",
+      returnDate: "",
+    });
+    setOpen(false);
+    setSelectedQty(null);
+    // console.log(user);
   };
 
   useEffect(() => {
@@ -83,14 +56,26 @@ const BookModal = ({ text, item }) => {
       ...data,
       name: user?.name,
       email: user?.email,
-      mobile_number: user?.mobile_number,
-      partnerId: item.partnerId
+      mobile_number: user.mobile_number,
+      partnerId: item.partnerId._id,
     });
   }, [user]);
 
   useEffect(() => {
     console.log(data);
   }, [data]);
+
+  useEffect(() => {
+    const options = Array.from(
+      { length: parseInt(item.availableQuantity) },
+      (_, index) => ({
+        label: (index + 1).toString(),
+        value: index + 1,
+      })
+    );
+
+    setOptions(options);
+  }, [item]);
 
   return (
     <>
@@ -104,7 +89,7 @@ const BookModal = ({ text, item }) => {
 
       <Modal
         open={open}
-        title="Book Vehicle Slot"
+        title="Make a Booking"
         onCancel={handleCancel}
         footer={[
           <button
@@ -135,7 +120,6 @@ const BookModal = ({ text, item }) => {
               className="formInput"
               onChange={handleChange}
               value={data.name}
-              
             />
           </div>
 
@@ -148,7 +132,6 @@ const BookModal = ({ text, item }) => {
               id="mobile_number"
               placeholder="Eg. 7775860364"
               className="formInput"
-              
               onChange={(e) => {
                 e.target.value = e.target.value
                   .replace(/[^0-9]/g, "")
@@ -176,16 +159,31 @@ const BookModal = ({ text, item }) => {
           </div>
 
           <div className=" mt-5">
+            <label htmlFor="bookedQuantity" className="formLabel">
+              Booking Quantity:
+            </label>
+
+            <Dropdown
+              options={options}
+              selectedOption={selectedQty}
+              setSelectedOption={setSelectedQty}
+            />
+          </div>
+
+          <div className=" mt-5">
             <label htmlFor="bookingDate" className="formLabel">
               Booking Date:
             </label>
             <DatePicker
-            value={data.bookingDate ? moment(data.bookingDate) : null}
+              format={"DD/MM/YYYY"}
+              value={
+                data.bookingDate ? dayjs(data.bookingDate, "YYYY/MM/DD") : null
+              }
               onChange={(date, dateString) => {
                 console.log(date, dateString);
                 setData({
                   ...data,
-                  bookingDate: dateString,
+                  bookingDate: date.format("YYYY/MM/DD"),
                 });
               }}
               disabledDate={(current) =>
@@ -199,16 +197,23 @@ const BookModal = ({ text, item }) => {
               Return Date:
             </label>
             <DatePicker
-            value={data.returnDate ? moment(data.returnDate) : null}
+              format={"DD/MM/YYYY"}
+              value={
+                data.returnDate ? dayjs(data.returnDate, "YYYY/MM/DD") : null
+              }
               onChange={(date, dateString) => {
+                if (!data.bookingDate) {
+                  message.error("First select booking date!");
+                  return;
+                }
                 console.log(date, dateString);
                 setData({
                   ...data,
-                  returnDate: dateString,
+                  returnDate: date.format("YYYY/MM/DD"),
                 });
               }}
               disabledDate={(current) =>
-                current && current < moment().startOf("day")
+                current && current < dayjs(data.bookingDate).startOf("day")
               }
             />
           </div>

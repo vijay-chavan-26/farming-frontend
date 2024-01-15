@@ -24,12 +24,12 @@ const SidebarMenuList = [
   {
     link: "/partner/equipments",
     label: "Equipments",
-    icon: <GiFarmTractor size={23} />,
+    icon: <MdAssignmentAdd size={22} />,
   },
   {
-    link: "/partner/add-equipment",
-    label: "Add Equipment",
-    icon: <MdAssignmentAdd size={22} />,
+    link: "/partner/vehicles",
+    label: "Vehicles",
+    icon: <GiFarmTractor size={23} />,
   },
 ];
 

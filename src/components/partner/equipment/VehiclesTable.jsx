@@ -51,7 +51,7 @@ const DepartmentsTableColumns = [
   },
 ];
 
-const EquipmentsTable = () => {
+const VehiclesTable = () => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(false);
   const [tableParams, setTableParams] = useState({
@@ -109,9 +109,9 @@ const EquipmentsTable = () => {
     try {
       const res = await get_request(`${API_URL}/partner/get-equipments/by-id/${user._id}`);
       if (res) {
-        const updatedRes = res.filter((item)=>item.type==="Equipment")
+        console.log(res)
+        const updatedRes = res.filter((item)=>item.type==="Vehicle")
         return updatedRes;
-
       } else {
         message.error("Something went wrong!");
         return;
@@ -174,5 +174,5 @@ const EquipmentsTable = () => {
   );
 };
 
-export default EquipmentsTable;
-  
+export default VehiclesTable;
+   
