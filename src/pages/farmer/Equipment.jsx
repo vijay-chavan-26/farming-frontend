@@ -48,6 +48,7 @@ const Equipment = () => {
       return;
     }
 
+
     const formData = {
       ...data,
       itemId: item._id,

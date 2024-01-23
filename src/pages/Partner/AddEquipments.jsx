@@ -100,7 +100,10 @@ const AddEquipments = () => {
   };
   return (
     <div className="p-4">
+      <div className="flex justify-between items-center">
       <h1 className="font-semibold text-xl text-theme">Add Equipment</h1>
+<button type="button" onClick={()=>navigate(-1)} className="px-4 py-1 border border-theme bg-white text-theme rounded-sm">Back</button>
+      </div>
       <div>
         <form onSubmit={handleSubmit}>
           <div className="w-2/3 mt-5">

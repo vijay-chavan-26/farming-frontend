@@ -66,6 +66,7 @@ const DealRequestTable = () => {
   const [data, setData] = useState();
   const [itemData, setItemData] = useState();
   const [loading, setLoading] = useState(false);
+  const [activeTable, setActiveTable] = useState("Pending");
   const [tableParams, setTableParams] = useState({
     pagination: {
       current: 1,
@@ -131,9 +132,12 @@ const DealRequestTable = () => {
       const res = await get_request(`${API_URL}/deals/get-deals-user/${user._id}`);
       console.log(res)
       if (res.message) {
-        return res.deals;
+        const updatedData = res.deals.filter(
+          (item) => item.status === activeTable
+        );
+        return updatedData;
       } else {
-        message.error("Something went wrong!");
+        // message.error("Something went wrong!");
         return;
       }
     } catch (error) {
@@ -221,8 +225,52 @@ const DealRequestTable = () => {
     });
   };
 
+  useEffect(()=>{
+    fetchDealsData().then((res) => {
+      fetchData(res);
+    });
+  },[activeTable])
+
   return (
     <div>
+    <div className="flex mb-3">
+        <button
+          onClick={() => {
+            setActiveTable("Pending");
+          }}
+          className={`px-2 py-1 ${
+            activeTable === "Pending"
+              ? "bg-[#FEF5E8] border-b-2 border-theme3"
+              : ""
+          }`}
+        >
+          Pending
+        </button>
+        <button
+          onClick={() => {
+            setActiveTable("Accepted");
+          }}
+          className={`px-2 py-1 ${
+            activeTable === "Accepted"
+              ? "bg-[#FEF5E8] border-b-2 border-theme3"
+              : ""
+          }`}
+        >
+          Accepted
+        </button>
+        <button
+          onClick={() => {
+            setActiveTable("Rejected");
+          }}
+          className={`px-2 py-1 ${
+            activeTable === "Rejected"
+              ? "bg-[#FEF5E8] border-b-2 border-theme3"
+              : ""
+          }`}
+        >
+          Rejected
+        </button>
+      </div>
       <Table
         columns={DepartmentsTableColumns}
         rowKey={(record) => record.key}

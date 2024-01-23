@@ -36,14 +36,13 @@ const Navigation = () => {
         </Route>
 
         <Route element={<FarmerWrapper />}>
-        <Route path="/farmer" element={<Farmer />}>
-
-          <Route path="home" element={<FarmerHome />} />
-          <Route path="vehicle" element={<Vehicle />} />
-          <Route path="equipment" element={<Equipment />} />
-          <Route path="helper" element={<Helper />} />
-          <Route path="deals" element={<Deals />} />
-        </Route>
+          <Route path="/farmer" element={<Farmer />}>
+            <Route path="home" element={<FarmerHome />} />
+            <Route path="vehicle" element={<Vehicle />} />
+            <Route path="equipment" element={<Equipment />} />
+            <Route path="helper" element={<Helper />} />
+            <Route path="deals" element={<Deals />} />
+          </Route>
         </Route>
 
         <Route element={<PartnerWrapper />}>
